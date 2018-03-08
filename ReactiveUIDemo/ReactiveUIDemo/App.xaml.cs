@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUIDemo.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,9 @@ namespace ReactiveUIDemo
 		{
 			InitializeComponent();
 
-			MainPage = new Views.MainMasterDetailPage();
+            //MainPage = new Views.MainMasterDetailPage();
+
+            MainPage = new LoginPage();
 		}
 
 		protected override void OnStart ()
