@@ -15,8 +15,8 @@ namespace ReactiveUIDemo
 			InitializeComponent();
 
             //MainPage = new Views.MainMasterDetailPage();
-
-            MainPage = new LoginPage();
+            var bootstrapper = new AppBootsrapper();
+            MainPage = bootstrapper.CreateMainPage();
 		}
 
 		protected override void OnStart ()

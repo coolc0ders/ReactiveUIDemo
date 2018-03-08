@@ -2,6 +2,7 @@
 using ReactiveUIDemo.Services;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
 using System.Text;
 
 namespace ReactiveUIDemo.ViewModel
@@ -27,8 +28,14 @@ namespace ReactiveUIDemo.ViewModel
 
         public ReactiveCommand LoginCommand { get; private set; }
 
+        IScheduler mainThreadScheduler;
+        IScheduler taskPoolScheduler;
+
         public LoginViewModel(IScreen hostScreen = null) : base(hostScreen)
         {
+
+            this.mainThreadScheduler = mainThreadScheduler ?? RxApp.MainThreadScheduler;
+            this.taskPoolScheduler = taskPoolScheduler ?? RxApp.TaskpoolScheduler;
             _loginService = new LoginService();
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {

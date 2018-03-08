@@ -6,7 +6,11 @@
              xmlns:viewModels="clr-namespace:ReactiveUIDemo.ViewModel"
              xmlns:views="clr-namespace:ReactiveUIDemo.Views"
              xmlns:ui="clr-namespace:ReactiveUIDemo.Views"
+                    
+                    
              x:TypeArguments="viewModels:LoginViewModel"
+                    
+                    
              >
     
     <ContentPage.Content>
