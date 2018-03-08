@@ -39,6 +39,7 @@ namespace ReactiveUIDemo.ViewModel
             _loginService = new LoginService();
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
+                HostScreen.Router.Navigate.Execute(new ItemsViewModel()).Subscribe();
             });
         }
     }

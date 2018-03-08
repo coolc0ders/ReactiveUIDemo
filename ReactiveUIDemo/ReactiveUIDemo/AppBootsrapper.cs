@@ -27,6 +27,7 @@ namespace ReactiveUIDemo
 
             //Register the views 
             Locator.CurrentMutable.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
+            Locator.CurrentMutable.Register(() => new ItemsPage(), typeof(IViewFor<ItemsViewModel>));
 
             this
                 .Router
