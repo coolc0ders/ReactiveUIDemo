@@ -13,8 +13,7 @@ namespace ReactiveUIDemo
 		public App ()
 		{
 			InitializeComponent();
-
-            //MainPage = new Views.MainMasterDetailPage();
+            
             var bootstrapper = new AppBootsrapper();
             MainPage = bootstrapper.CreateMainPage();
 		}
