@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ReactiveUIDemo.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterDetailPage : MasterDetailPage
+    public partial class MainMasterDetailPage : MasterDetailPage
     {
-        public MasterDetailPage()
+        public MainMasterDetailPage()
         {
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;

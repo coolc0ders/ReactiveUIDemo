@@ -13,7 +13,7 @@ namespace ReactiveUIDemo
 		{
 			InitializeComponent();
 
-			MainPage = new ReactiveUIDemo.MainPage();
+			MainPage = new Views.MainMasterDetailPage();
 		}
 
 		protected override void OnStart ()

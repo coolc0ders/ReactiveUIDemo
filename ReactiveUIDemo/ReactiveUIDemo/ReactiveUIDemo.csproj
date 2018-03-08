@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="reactiveui" Version="7.4.0" />
+    <PackageReference Include="reactiveui-events-xamforms" Version="7.4.0" />
+    <PackageReference Include="reactiveui-xamforms" Version="7.4.0" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
   <ItemGroup>
