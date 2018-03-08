@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace ReactiveUIDemo.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
+	public partial class LoginPage : ContentPageBase<LoginViewModel>
 	{
 		public LoginPage ()
 		{
