@@ -16,7 +16,6 @@ namespace ReactiveUIDemo.Views
 		public LoginPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new LoginViewModel();
 		}
 	}
 }

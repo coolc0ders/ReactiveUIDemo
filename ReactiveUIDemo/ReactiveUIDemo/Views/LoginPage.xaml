@@ -6,18 +6,17 @@
              xmlns:viewModels="clr-namespace:ReactiveUIDemo.ViewModel"
              xmlns:views="clr-namespace:ReactiveUIDemo.Views"
              xmlns:ui="clr-namespace:ReactiveUIDemo.Views"
-                    
-                    
              x:TypeArguments="viewModels:LoginViewModel"
-                    
-                    
              >
     
     <ContentPage.Content>
+
         <StackLayout>
+            <Label Text="Login" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
             <Entry Placeholder="Email" Text="{Binding UserName}" Margin="10, 50, 10, 0"/>
             <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}" Margin="10"/>
             <Button HorizontalOptions="Center" Margin="10" Text="Login" Command="{Binding LoginCommand}"/>
         </StackLayout>
     </ContentPage.Content>
+    
 </ui:ContentPageBase>

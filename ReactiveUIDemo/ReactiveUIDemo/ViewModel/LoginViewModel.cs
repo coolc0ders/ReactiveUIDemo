@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ReactiveUIDemo.ViewModel
 {
@@ -26,21 +27,48 @@ namespace ReactiveUIDemo.ViewModel
             set => this.RaiseAndSetIfChanged(ref _password, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        ObservableAsPropertyHelper<bool> _validLogin;
+        public bool ValidLogin
+        {
+            get { return _validLogin?.Value ?? false; }
+        }
+        
         public ReactiveCommand LoginCommand { get; private set; }
 
         IScheduler mainThreadScheduler;
         IScheduler taskPoolScheduler;
 
-        public LoginViewModel(IScreen hostScreen = null) : base(hostScreen)
+        public LoginViewModel(ILogin login, IScreen hostScreen = null) : base(hostScreen)
         {
-
             this.mainThreadScheduler = mainThreadScheduler ?? RxApp.MainThreadScheduler;
             this.taskPoolScheduler = taskPoolScheduler ?? RxApp.TaskpoolScheduler;
-            _loginService = new LoginService();
+            _loginService = login;
+
+            this.WhenAnyValue(x => x.UserName, x => x.Password,
+                (email, password) =>
+                (
+                    ///Validate the password
+                    !string.IsNullOrEmpty(password) && password.Length > 5
+                )
+                &&
+                (
+                    ///Validate teh email.
+                    !string.IsNullOrEmpty(email)
+                            &&
+                     Regex.Matches(email, "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$").Count == 1
+                ))
+                .ToProperty(this, v => v.ValidLogin,out _validLogin);
+
             LoginCommand = ReactiveCommand.CreateFromTask(async () =>
             {
-                HostScreen.Router.Navigate.Execute(new ItemsViewModel()).Subscribe();
-            });
+                
+            }, this.WhenAnyValue(x => x.ValidLogin, x => x.ValidLogin, (validLogin, valid) => ValidLogin && valid));
+            
         }
+
+
     }
 }
