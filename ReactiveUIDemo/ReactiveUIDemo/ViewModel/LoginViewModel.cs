@@ -71,13 +71,11 @@ namespace ReactiveUIDemo.ViewModel
                 var lg = await login.Login(_userName, _password);
                 if (lg)
                 {
-                    HostScreen
-                                .Router
+                    HostScreen.Router
                                 .Navigate
                                 .Execute(new ItemsViewModel())
                                 .Subscribe();
                 }
-
             }, this.WhenAnyValue(x => x.ValidLogin, x => x.ValidLogin, (validLogin, valid) => ValidLogin && valid));
 
         }

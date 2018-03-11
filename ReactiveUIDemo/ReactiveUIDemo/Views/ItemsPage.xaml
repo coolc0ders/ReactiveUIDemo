@@ -29,7 +29,7 @@
         </ListView>
         <StackLayout Orientation="Horizontal">
             <Entry Text="{Binding TodoTitle}" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Add" HorizontalOptions="End"/>
+            <Button Text="Add" HorizontalOptions="End" Command="{Binding AddCommand}"/>
         </StackLayout>
     </StackLayout>
   

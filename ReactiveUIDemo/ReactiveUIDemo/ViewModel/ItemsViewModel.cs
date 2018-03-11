@@ -27,8 +27,10 @@ namespace ReactiveUIDemo.ViewModel
             set => this.RaiseAndSetIfChanged(ref _selectedTodo , value);
         }
 
-        private string _todoTitl;
+        private ObservableAsPropertyHelper<bool> _canAdd;
+        public bool CanAdd => _canAdd?.Value ?? false;
 
+        private string _todoTitl;
         public string TodoTitle
         {
             get { return _todoTitl; }
@@ -39,11 +41,16 @@ namespace ReactiveUIDemo.ViewModel
 
         public ItemsViewModel(IScreen hostScreen = null) : base(hostScreen)
         {
+            this.WhenAnyValue(x => x.TodoTitle,
+                title => 
+                !String.IsNullOrEmpty(title)).ToProperty(this, x => x.CanAdd, out _canAdd);
+
             AddCommand = ReactiveCommand.CreateFromTask( () =>
             {
-
+                Todos.Add(new Todo() { Title = TodoTitle });
                 return Task.CompletedTask;
-            });
+
+            }, this.WhenAnyValue(x => x.CanAdd, canAdd => canAdd && canAdd));
 
             //Dont forget to set ChangeTrackingEnabled to true.
             Todos = new ReactiveList<Todo>() { ChangeTrackingEnabled = true };
@@ -52,13 +59,6 @@ namespace ReactiveUIDemo.ViewModel
             Todos.Add(new Todo { IsDone = false, Title = "Go get some dinner" });
             Todos.Add(new Todo { IsDone = false, Title = "Watch GOT" });
             Todos.Add(new Todo { IsDone = false, Title = "Code code and code!!!!" });
-
-            Todos.ItemChanged.Subscribe(
-                x =>
-                {
-                    Debug.WriteLine("Item Changed");
-                    ;
-                });
 
             ///Lets detect when ever a todo Item is marked as done 
             ///IF it is, it is sent to the bottom of the list
@@ -69,7 +69,6 @@ namespace ReactiveUIDemo.ViewModel
                {
                    if (x.IsDone)
                    {
-                       Debug.WriteLine("Item Isdone Changed");
                        Todos.Remove(x);
                        Todos.Add(x);
                    }
