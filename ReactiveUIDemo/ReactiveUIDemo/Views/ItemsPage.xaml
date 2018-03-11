@@ -6,24 +6,31 @@
              xmlns:ui="clr-namespace:ReactiveUIDemo.Views"
              x:TypeArguments="viewModels:ItemsViewModel"
              x:Class="ReactiveUIDemo.Views.ItemsPage">
-    
-  <ListView x:Name="MyListView"
+
+    <StackLayout>
+        <ListView x:Name="MyListView"
             ItemsSource="{Binding Todos}"
             SelectedItem="{Binding SelectedTodo}"
             CachingStrategy="RecycleElement">
-            
-    <!--Custom View Cells-->
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell IsEnabled="{Binding IsEnabled}">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Title}" Style="{DynamicResource ListItemTextStyle}" HorizontalOptions="Start"/>
-                        <Switch IsToggled="{Binding IsDone}" HorizontalOptions="End" IsEnabled="{Binding IsEnabled}"/>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+            <!--Custom View Cells-->
 
-    </ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell IsEnabled="{Binding IsEnabled}">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Title}" Style="{DynamicResource ListItemTextStyle}" HorizontalOptions="Start"/>
+                            <Switch IsToggled="{Binding IsDone}" HorizontalOptions="End" IsEnabled="{Binding IsEnabled}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <StackLayout Orientation="Horizontal">
+            <Entry Text="{Binding TodoTitle}" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Add" HorizontalOptions="End"/>
+        </StackLayout>
+    </StackLayout>
+  
 </ui:ContentPageBase>

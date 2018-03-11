@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ReactiveUIDemo.ViewModel
 {
@@ -26,9 +27,24 @@ namespace ReactiveUIDemo.ViewModel
             set => this.RaiseAndSetIfChanged(ref _selectedTodo , value);
         }
 
+        private string _todoTitl;
+
+        public string TodoTitle
+        {
+            get { return _todoTitl; }
+            set {this.RaiseAndSetIfChanged(ref _todoTitl, value); }
+        }
+
+        public ReactiveCommand AddCommand { get; private set; }
 
         public ItemsViewModel(IScreen hostScreen = null) : base(hostScreen)
         {
+            AddCommand = ReactiveCommand.CreateFromTask( () =>
+            {
+
+                return Task.CompletedTask;
+            });
+
             //Dont forget to set ChangeTrackingEnabled to true.
             Todos = new ReactiveList<Todo>() { ChangeTrackingEnabled = true };
 
