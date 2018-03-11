@@ -32,8 +32,9 @@ namespace ReactiveUIDemo
             this
                 .Router
                 .NavigateAndReset
-                .Execute(new LoginViewModel(Locator.CurrentMutable.GetService<ILogin>()))
+                .Execute(new ItemsViewModel())
                 .Subscribe();
+            //LoginViewModel(Locator.CurrentMutable.GetService<ILogin>())
         }
 
         public Page CreateMainPage()

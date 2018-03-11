@@ -6,20 +6,20 @@
              xmlns:ui="clr-namespace:ReactiveUIDemo.Views"
              x:TypeArguments="viewModels:ItemsViewModel"
              x:Class="ReactiveUIDemo.Views.ItemsPage">
-
-    <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
+    
+  <ListView x:Name="MyListView"
+            ItemsSource="{Binding Todos}"
+            SelectedItem="{Binding SelectedTodo}"
             CachingStrategy="RecycleElement">
-
-        <!--Custom View Cells-->
+            
+    <!--Custom View Cells-->
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
+                <ViewCell IsEnabled="{Binding IsEnabled}">
                     <StackLayout>
-                        <Label Text="{Binding Text}" FontSize="Large" 
-                   Style="{DynamicResource Title}" />
+                        <Label Text="{Binding Title}" Style="{DynamicResource ListItemTextStyle}" />
+                        <Switch IsToggled="{Binding IsDone}"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
