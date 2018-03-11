@@ -12,7 +12,7 @@ namespace ReactiveUIDemo.Services
         public LoginService()
         {
             _userCredentials = new Dictionary<string, string>();
-            _userCredentials.Add("user1@sad.com", "!24536@3534");
+            _userCredentials.Add("us@sad.com", "aaaaaaaa");
             _userCredentials.Add("user2@sad.com", "Userabc123");
             _userCredentials.Add("user3@sad.com", "!A@3534");
         }

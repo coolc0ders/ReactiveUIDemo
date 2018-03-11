@@ -48,6 +48,7 @@ namespace ReactiveUIDemo.ViewModel
             AddCommand = ReactiveCommand.CreateFromTask( () =>
             {
                 Todos.Add(new Todo() { Title = TodoTitle });
+                TodoTitle = string.Empty;
                 return Task.CompletedTask;
 
             }, this.WhenAnyValue(x => x.CanAdd, canAdd => canAdd && canAdd));

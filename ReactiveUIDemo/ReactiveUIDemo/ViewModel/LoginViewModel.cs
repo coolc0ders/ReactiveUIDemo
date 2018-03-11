@@ -40,14 +40,9 @@ namespace ReactiveUIDemo.ViewModel
         }
         
         public ReactiveCommand LoginCommand { get; private set; }
-
-        IScheduler mainThreadScheduler;
-        IScheduler taskPoolScheduler;
-
+        
         public LoginViewModel(ILogin login, IScreen hostScreen = null) : base(hostScreen)
         {
-            this.mainThreadScheduler = mainThreadScheduler ?? RxApp.MainThreadScheduler;
-            this.taskPoolScheduler = taskPoolScheduler ?? RxApp.TaskpoolScheduler;
             _loginService = login;
 
             this.WhenAnyValue(x => x.UserName, x => x.Password,
