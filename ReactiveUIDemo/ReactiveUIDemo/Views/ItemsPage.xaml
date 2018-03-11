@@ -17,9 +17,9 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell IsEnabled="{Binding IsEnabled}">
-                    <StackLayout>
-                        <Label Text="{Binding Title}" Style="{DynamicResource ListItemTextStyle}" />
-                        <Switch IsToggled="{Binding IsDone}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Title}" Style="{DynamicResource ListItemTextStyle}" HorizontalOptions="Start"/>
+                        <Switch IsToggled="{Binding IsDone}" HorizontalOptions="End" IsEnabled="{Binding IsEnabled}"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

@@ -29,7 +29,8 @@ namespace ReactiveUIDemo.ViewModel
 
         public ItemsViewModel(IScreen hostScreen = null) : base(hostScreen)
         {
-            Todos = new ReactiveList<Todo>();
+            //Dont forget to set ChangeTrackingEnabled to true.
+            Todos = new ReactiveList<Todo>() { ChangeTrackingEnabled = true };
 
             Todos.Add(new Todo { IsDone = false, Title = "Go to Sleep" });
             Todos.Add(new Todo { IsDone = false, Title = "Go get some dinner" });
@@ -54,7 +55,7 @@ namespace ReactiveUIDemo.ViewModel
                    {
                        Debug.WriteLine("Item Isdone Changed");
                        Todos.Remove(x);
-                       //Todos.Add(x);
+                       Todos.Add(x);
                    }
                });
         }
