@@ -9,6 +9,7 @@ namespace ReactiveUIDemo.ViewModel
     {
         public ItemsViewModel(IScreen hostScreen = null) : base(hostScreen)
         {
+
         }
     }
 }
