@@ -1,4 +1,4 @@
-### Building a Cross Platform MVVM app with Xamarin.Forms and ReactiveUI.
+# Building a Cross Platform MVVM app with Xamarin.Forms and ReactiveUI.
 
 This repo contains a demo on how to build Clean MVVM applications with Xamarin.Forms and MVVM
 
